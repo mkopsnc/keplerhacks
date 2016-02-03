@@ -6,7 +6,7 @@ This repository contains sample code for paper submitted to conference:
 
 Paper title: **_Best practices in debugging Kepler workflows_**
 
-Authors: Michal Owsiak, Marcin Plociennik, Bartek Palak, Tomasz Zok, Olivier Hoenen
+Authors: _Michal Owsiak_, _Marcin Plociennik_, _Bartek Palak_, _Tomasz Zok_, _Olivier Hoenen_
 
 To compile the code, simply clone the repository and call make
 
