@@ -15,3 +15,6 @@ To compile the code, simply clone the repository and call make
     make
     make test 
 
+Samples presented in this project are Java/C based codes that illustrate concepts presented in paper. There are no actors for Kepler, however, it's quite easy to turn code into Kepler based actor.
+
+Code is mostly self explaining. All notes are in source comments.

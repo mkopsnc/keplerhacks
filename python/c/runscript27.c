@@ -5,12 +5,14 @@
 
 static PyThreadState *tstate = NULL;
 
+// Initialization should be done once
 JNIEXPORT void JNICALL Java_python_Python_pyinitialize
   (JNIEnv *env, jclass obj) {
 	
 	Py_Initialize();
 }
 
+// Finalization should be done once
 JNIEXPORT void JNICALL Java_python_Python_pyfinalize
   (JNIEnv *env, jclass obj) {
 
@@ -35,19 +37,27 @@ JNIEXPORT void JNICALL Java_python_Python_runscript27
     return;
   }
 
+  // Some info for the user
   printf("Script from python.Python: %s\n", c_name);
   printf("File with script: %s\n",c_str);
-	
+
+  // We will open file passed as argument
+  // and call this script via Python library	
   FILE* file;
   file = fopen(c_str,"r");
-	
+
+  // This is important!!
+  // Remember to reserve PyGILState
+  // It is not thread safe	
   PyGILState_STATE gstate;
   gstate = PyGILState_Ensure();
 	
   PyRun_SimpleFile(file, c_str);
 
+  // once finished remember to release GIL
   PyGILState_Release(gstate);
 
+  // close file, clean up, and return. That's it.
   fclose(file);
 
   // after using it, remember to release the memory
