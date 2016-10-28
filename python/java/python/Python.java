@@ -17,6 +17,7 @@ public class Python {
 
 	// some functions we want to call via JNI
 	public static native void runscript27(String script, String name);
+        public static native void runstring27(String script);
 	public static native void pyinitialize();
 	public static native void pyfinalize();
 
@@ -34,10 +35,22 @@ public class Python {
 			writer.flush();
 			writer.close();
 
+			pyinitialize();
 			// oce file is ready, just call it
 			runscript27("script.py", "test");
+			pyfinalize();
 		} catch(Exception ex) {
 			ex.printStackTrace();
 		}
+
+		try {
+			pyinitialize();
+			// oce file is ready, just call it
+			runstring27( script );
+			pyfinalize();
+		} catch(Exception ex) {
+			ex.printStackTrace();
+		}
+
 	}
 }
